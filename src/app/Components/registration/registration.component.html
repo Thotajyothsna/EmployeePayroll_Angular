@@ -1,31 +1,33 @@
 <mat-card class="form-card">
-  <h2>Employee Payroll Form</h2>
+  <h2 class="form-title">Employee Payroll Form</h2>
 
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
 
     <!-- Name -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name" placeholder="Enter full name" required>
-      <mat-error *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched">
-        Name is required
-      </mat-error>
-    </mat-form-field>
+    <div class="form-row">
+      <label class="form-label">Name</label>
+      <mat-form-field appearance="outline" class="form-input">
+        <input matInput formControlName="name" placeholder="Enter full name" required>
+        <mat-error *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+    </div>
 
     <!-- Profile Image -->
-    <div class="profile-section">
-      <label>Profile Image</label>
-      <mat-radio-group formControlName="profile">
-        <mat-radio-button *ngFor="let img of profileImages" [value]="img.value">
-          <img [src]="img.url" />
+    <div class="form-row">
+      <label class="form-label">Profile Image</label>
+      <mat-radio-group formControlName="profile" class="profile-group">
+        <mat-radio-button *ngFor="let img of profileImages" [value]="img.value" class="profile-option">
+          <!-- <img [src]="img.url" class="profile-img" alt="Profile" /> -->
         </mat-radio-button>
       </mat-radio-group>
     </div>
 
     <!-- Gender -->
     <div class="form-row">
-      <label>Gender</label>
-      <mat-radio-group formControlName="gender">
+      <label class="form-label">Gender</label>
+      <mat-radio-group formControlName="gender" class="gender-group">
         <mat-radio-button value="male">Male</mat-radio-button>
         <mat-radio-button value="female">Female</mat-radio-button>
         <mat-radio-button value="other">Other</mat-radio-button>
@@ -33,38 +35,68 @@
     </div>
 
     <!-- Department -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Department</mat-label>
-      <mat-select formControlName="department">
-        <mat-option value="HR">HR</mat-option>
-        <mat-option value="Sales">Sales</mat-option>
-        <mat-option value="Finance">Finance</mat-option>
-        <mat-option value="Engineer">Engineer</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="form-row">
+      <label class="form-label">Department</label>
+      <mat-form-field appearance="outline" class="form-input">
+        <mat-select formControlName="department">
+          <mat-option value="HR">HR</mat-option>
+          <mat-option value="Sales">Sales</mat-option>
+          <mat-option value="Finance">Finance</mat-option>
+          <mat-option value="Engineer">Engineer</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
     <!-- Salary -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Salary</mat-label>
-      <input matInput type="number" formControlName="salary" placeholder="Enter salary">
-    </mat-form-field>
+    <div class="form-row">
+      <label class="form-label">Salary</label>
+      <mat-form-field appearance="outline" class="form-input">
+        <input matInput type="number" formControlName="salary" placeholder="Enter salary">
+      </mat-form-field>
+    </div>
 
     <!-- Start Date -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Start Date</mat-label>
-      <input matInput type="date" formControlName="startDate">
-    </mat-form-field>
+    <div class="form-row">
+      <label class="form-label">Start Date</label>
+      <div class="date-dropdowns">
+        <mat-form-field appearance="outline" class="date-field">
+          <mat-label>Day</mat-label>
+          <mat-select formControlName="day">
+            <mat-option *ngFor="let d of days" [value]="d">{{ d }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="date-field">
+  <mat-label>Month</mat-label>
+  <mat-select formControlName="month">
+    <mat-option *ngFor="let m of months" [value]="m.value">
+      {{ m.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+        <mat-form-field appearance="outline" class="date-field">
+          <mat-label>Year</mat-label>
+          <mat-select formControlName="year">
+            <mat-option *ngFor="let y of years" [value]="y">{{ y }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
 
     <!-- Notes -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Notes</mat-label>
-      <textarea matInput formControlName="notes" rows="3"></textarea>
-    </mat-form-field>
+    <div class="form-row">
+      <label class="form-label">Notes</label>
+      <mat-form-field appearance="outline" class="form-input">
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
 
     <!-- Buttons -->
     <div class="form-buttons">
       <button mat-raised-button color="primary" type="submit">Submit</button>
       <button mat-raised-button color="warn" type="reset">Reset</button>
     </div>
+
   </form>
 </mat-card>

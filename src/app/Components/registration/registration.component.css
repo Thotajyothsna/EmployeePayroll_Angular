@@ -1,31 +1,92 @@
+
 .form-card {
-  max-width: 600px;
+  max-width: 700px;
   margin: 2rem auto;
-  padding: 1.5rem;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.full-width {
-  width: 100%;
-  margin-bottom: 1rem;
+.form-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #3f51b5;
 }
 
-.profile-section {
-  margin: 1rem 0;
+.form-row {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
-mat-radio-button img {
-  width: 60px;
-  height: 60px;
+.form-label {
+  width: 150px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-input {
+  flex: 1;
+}
+
+.profile-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin: 0 10px;
-  cursor: pointer;
+  margin-left: 8px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.profile-option.mat-radio-checked .profile-img {
+  border-color: #3f51b5;
+}
+
+.gender-group {
+  display: flex;
+  gap: 2rem;
+}
+
+.date-dropdowns {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
+.date-field {
+  flex: 1;
 }
 
 .form-buttons {
-  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.date-dropdowns {
   display: flex;
   gap: 1rem;
-  justify-content: flex-end;
 }
+
+.date-field {
+  width: 100px;   /* fixed width for day/month */
+}
+
+.date-field:last-child {
+  width: 120px;   /* year dropdown slightly wider */
+}
+.date-container {
+  display: flex;
+  gap: 10px;
+}
+
+.date-field {
+  flex: 1;
+}
+
