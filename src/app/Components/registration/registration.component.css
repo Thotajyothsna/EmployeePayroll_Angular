@@ -1,0 +1,31 @@
+.form-card {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.profile-section {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-radio-button img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.form-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
