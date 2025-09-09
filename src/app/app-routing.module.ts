@@ -6,6 +6,7 @@ import { registrationcompoment } from './Components/registration/registration.co
 const routes: Routes = [
   {path:'dashboard',component:DashboardComponent},
   {path:'register',component:registrationcompoment},
+  {path:'register/:id',component:registrationcompoment},
   {path:'**',component:DashboardComponent}
 ];
 

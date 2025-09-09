@@ -19,9 +19,15 @@
       <label class="form-label">Profile Image</label>
       <mat-radio-group formControlName="profile" class="profile-group">
         <mat-radio-button *ngFor="let img of profileImages" [value]="img.value" class="profile-option">
-          <!-- <img [src]="img.url" class="profile-img" alt="Profile" /> -->
+          <!-- <-- Uncomment to show thumbnails: -->
+          <img [src]="img.url" class="profile-img" alt="Profile" />
+          <!-- --> 
+          <!-- {{ img.value }} -->
         </mat-radio-button>
       </mat-radio-group>
+      <mat-error *ngIf="employeeForm.get('profile')?.invalid && employeeForm.get('profile')?.touched">
+        Choose a profile
+      </mat-error>
     </div>
 
     <!-- Gender -->
@@ -32,19 +38,25 @@
         <mat-radio-button value="female">Female</mat-radio-button>
         <mat-radio-button value="other">Other</mat-radio-button>
       </mat-radio-group>
+      <mat-error *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched">
+        Select gender
+      </mat-error>
     </div>
 
-    <!-- Department -->
+    <!-- Department (multi-select checkboxes) -->
     <div class="form-row">
       <label class="form-label">Department</label>
-      <mat-form-field appearance="outline" class="form-input">
-        <mat-select formControlName="department">
-          <mat-option value="HR">HR</mat-option>
-          <mat-option value="Sales">Sales</mat-option>
-          <mat-option value="Finance">Finance</mat-option>
-          <mat-option value="Engineer">Engineer</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="checkbox-group">
+        <mat-checkbox
+          *ngFor="let d of departments"
+          [checked]="isDeptChecked(d)"
+          (change)="onToggleDepartment(d, $event.checked)">
+          {{ d }}
+        </mat-checkbox>
+      </div>
+      <mat-error *ngIf="employeeForm.get('department')?.invalid && employeeForm.get('department')?.touched">
+        Select at least one department
+      </mat-error>
     </div>
 
     <!-- Salary -->
@@ -52,6 +64,12 @@
       <label class="form-label">Salary</label>
       <mat-form-field appearance="outline" class="form-input">
         <input matInput type="number" formControlName="salary" placeholder="Enter salary">
+        <mat-error *ngIf="employeeForm.get('salary')?.hasError('required') && employeeForm.get('salary')?.touched">
+          Salary is required
+        </mat-error>
+        <mat-error *ngIf="employeeForm.get('salary')?.hasError('min')">
+          Salary cannot be negative
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -67,13 +85,13 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="date-field">
-  <mat-label>Month</mat-label>
-  <mat-select formControlName="month">
-    <mat-option *ngFor="let m of months" [value]="m.value">
-      {{ m.name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+          <mat-label>Month</mat-label>
+          <mat-select formControlName="month">
+            <mat-option *ngFor="let m of months" [value]="m.value">
+              {{ m.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
         <mat-form-field appearance="outline" class="date-field">
           <mat-label>Year</mat-label>
@@ -88,7 +106,7 @@
     <div class="form-row">
       <label class="form-label">Notes</label>
       <mat-form-field appearance="outline" class="form-input">
-        <textarea matInput formControlName="notes" rows="3"></textarea>
+        <textarea matInput formControlName="note" rows="3"></textarea>
       </mat-form-field>
     </div>
 
