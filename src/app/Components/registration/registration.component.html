@@ -14,50 +14,53 @@
       </mat-form-field>
     </div>
 
-    <!-- Profile Image -->
-    <div class="form-row">
-      <label class="form-label">Profile Image</label>
-      <mat-radio-group formControlName="profile" class="profile-group">
-        <mat-radio-button *ngFor="let img of profileImages" [value]="img.value" class="profile-option">
-          <!-- <-- Uncomment to show thumbnails: -->
-          <img [src]="img.url" class="profile-img" alt="Profile" />
-          <!-- --> 
-          <!-- {{ img.value }} -->
-        </mat-radio-button>
-      </mat-radio-group>
-      <mat-error *ngIf="employeeForm.get('profile')?.invalid && employeeForm.get('profile')?.touched">
-        Choose a profile
-      </mat-error>
-    </div>
+   <!-- Profile Image -->
+<div class="form-row">
+  <label class="form-label">Profile Image</label>
+  <div class="form-input">
+    <mat-radio-group formControlName="profile" class="profile-group">
+      <mat-radio-button *ngFor="let img of profileImages" [value]="img.value" class="profile-option">
+        <img [src]="img.url" class="profile-img" alt="Profile" />
+      </mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="employeeForm.get('profile')?.invalid && employeeForm.get('profile')?.touched">
+      Choose a profile
+    </mat-error>
+  </div>
+</div>
 
-    <!-- Gender -->
-    <div class="form-row">
-      <label class="form-label">Gender</label>
-      <mat-radio-group formControlName="gender" class="gender-group">
-        <mat-radio-button value="male">Male</mat-radio-button>
-        <mat-radio-button value="female">Female</mat-radio-button>
-        <mat-radio-button value="other">Other</mat-radio-button>
-      </mat-radio-group>
-      <mat-error *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched">
-        Select gender
-      </mat-error>
-    </div>
+<!-- Gender -->
+<div class="form-row">
+  <label class="form-label">Gender</label>
+  <div class="form-input">
+    <mat-radio-group formControlName="gender" class="gender-group">
+      <mat-radio-button value="male">Male</mat-radio-button>
+      <mat-radio-button value="female">Female</mat-radio-button>
+      <mat-radio-button value="other">Other</mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched">
+      Select gender
+    </mat-error>
+  </div>
+</div>
 
-    <!-- Department (multi-select checkboxes) -->
-    <div class="form-row">
-      <label class="form-label">Department</label>
-      <div class="checkbox-group">
-        <mat-checkbox
-          *ngFor="let d of departments"
-          [checked]="isDeptChecked(d)"
-          (change)="onToggleDepartment(d, $event.checked)">
-          {{ d }}
-        </mat-checkbox>
-      </div>
-      <mat-error *ngIf="employeeForm.get('department')?.invalid && employeeForm.get('department')?.touched">
-        Select at least one department
-      </mat-error>
+<!-- Department -->
+<div class="form-row">
+  <label class="form-label">Department</label>
+  <div class="form-input">
+    <div class="checkbox-group">
+      <mat-checkbox
+        *ngFor="let d of departments"
+        [checked]="isDeptChecked(d)"
+        (change)="onToggleDepartment(d, $event.checked)">
+        {{ d }}
+      </mat-checkbox>
     </div>
+    <mat-error *ngIf="employeeForm.get('department')?.invalid && employeeForm.get('department')?.touched">
+      Select at least one department
+    </mat-error>
+  </div>
+</div>
 
     <!-- Salary -->
     <div class="form-row">

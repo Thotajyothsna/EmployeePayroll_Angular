@@ -110,3 +110,9 @@
 .checkbox-group .mat-checkbox:hover {
   background: #f1f1f1;
 }
+.form-input mat-error {
+  display: block;
+  margin-top: 4px;
+  color: red; /* optional override */
+  font-size: 0.85rem;
+}
